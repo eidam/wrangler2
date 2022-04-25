@@ -220,6 +220,7 @@ import Table from "ink-table";
 import React from "react";
 import { fetch } from "undici";
 import { getCloudflareApiBaseUrl } from "./cfetch";
+import { ciCheck } from "./ci-check";
 import { getEnvironmentVariableFactory } from "./environment-variables";
 import openInBrowser from "./open-in-browser";
 import { parseTOML, readFileSync } from "./parse";
@@ -256,7 +257,7 @@ interface PKCECodes {
 /**
  * The module level state of the authentication flow.
  */
-interface State extends AuthTokens {
+export interface State extends AuthTokens {
   authorizationCode?: string;
   codeChallenge?: string;
   codeVerifier?: string;
@@ -402,6 +403,7 @@ export function reinitialiseAuthTokens(config?: UserAuthConfig): void {
 }
 
 export function getAPIToken(): string | undefined {
+  ciCheck(LocalState);
   if (LocalState.apiToken) {
     console.warn(
       "It looks like you have used Wrangler 1's `config` command to login with an API token.\n" +
@@ -1071,6 +1073,7 @@ export function listScopes(message = "💁 Available scopes:"): void {
 export async function getAccountId(
   isInteractive = true
 ): Promise<string | undefined> {
+  ciCheck(LocalState);
   const apiToken = getAPIToken();
   if (!apiToken) return;
 

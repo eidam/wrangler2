@@ -71,3 +71,6 @@ jest.mock("../dev/dev", () => {
 // Make sure that we don't accidentally try to open a browser window when running tests.
 // We will actually provide a mock implementation for `openInBrowser()` within relevant tests.
 jest.mock("../open-in-browser");
+
+// Must mock `ciCheck()` implementation to prevent tests in actual CI throwing unnecessary errors.
+jest.mock("../ci-check.ts");
