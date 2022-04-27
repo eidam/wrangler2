@@ -1,5 +1,25 @@
 # wrangler
 
+## 0.0.28
+
+### Patch Changes
+
+- [#848](https://github.com/cloudflare/wrangler2/pull/848) [`0a79d75`](https://github.com/cloudflare/wrangler2/commit/0a79d75e6aba11a3f0d5a7490f1b75c9f3e80ea8) Thanks [@petebacondarwin](https://github.com/petebacondarwin)! - polish: improve consistency of warnings and errors
+
+  Related to #377
+
+* [#851](https://github.com/cloudflare/wrangler2/pull/851) [`277b254`](https://github.com/cloudflare/wrangler2/commit/277b25421175b4efc803cd68ef543cb55b07c114) Thanks [@threepointone](https://github.com/threepointone)! - polish: do not log the error object when refreshing a token fails
+
+  We handle the error anyway (by doing a fresh login) which has its own logging and messaging. In the future we should add a DEBUG mode that logs all requests/errors/warnings, but that's for later.
+
+- [#790](https://github.com/cloudflare/wrangler2/pull/790) [`331c659`](https://github.com/cloudflare/wrangler2/commit/331c65979295320b37cbf1f995f4acfc28630702) Thanks [@sidharthachatterjee](https://github.com/sidharthachatterjee)! - feature: Adds 'wrangler pages publish' (alias 'wrangler pages deployment create') command.
+
+* [#829](https://github.com/cloudflare/wrangler2/pull/829) [`f08aac5`](https://github.com/cloudflare/wrangler2/commit/f08aac5dc1894ceaa84fc8b1a0c3d898dbbbe028) Thanks [@JacobMGEvans](https://github.com/JacobMGEvans)! - feat: Add validation to the `name` field in configuration.
+  The validation will warn users that the field can only be "type string,
+  alphanumeric, underscores, and lowercase with dashes only" using the same RegEx as the backend
+
+  resolves #795 #775
+
 ## 0.0.27
 
 ### Patch Changes
