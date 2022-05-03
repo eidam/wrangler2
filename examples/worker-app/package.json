@@ -4,7 +4,8 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "test": "npx jest"
+    "test": "npx jest",
+    "dev:local": "wrangler dev --local"
   },
   "author": "",
   "license": "ISC",
@@ -12,5 +13,8 @@
   "jest": {
     "testRegex": ".*.test\\.[jt]sx?$",
     "testEnvironment": "wrangler"
+  },
+  "dependencies": {
+    "wrangler": "^0.0.0-97f945f"
   }
 }
