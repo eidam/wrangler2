@@ -15,6 +15,6 @@
     "testEnvironment": "wrangler"
   },
   "dependencies": {
-    "wrangler": "^0.0.0-97f945f"
+    "wrangler": "0.0.0-97f945f"
   }
 }
