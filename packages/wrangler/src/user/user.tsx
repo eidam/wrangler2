@@ -301,16 +301,6 @@ const Scopes = {
 		"See your user info such as name, email address, and account memberships.",
 	"workers:write":
 		"See and change Cloudflare Workers data such as zones, KV storage, namespaces, scripts, and routes.",
-	"workers_kv:write":
-		"See and change Cloudflare Workers KV Storage data such as keys and namespaces.",
-	"workers_routes:write":
-		"See and change Cloudflare Workers data such as filters and routes.",
-	"workers_scripts:write":
-		"See and change Cloudflare Workers scripts, durable objects, subdomains, triggers, and tail data.",
-	"workers_tail:read": "See Cloudflare Workers tail and script data.",
-	"pages:write":
-		"See and change Cloudflare Pages projects, settings and deployments.",
-	"zone:read": "Grants read level access to account zone.",
 } as const;
 
 /**
@@ -328,10 +318,10 @@ export function validateScopeKeys(
 	return scopes.every((scope) => scope in Scopes);
 }
 
-const CLIENT_ID = "54d11594-84e4-41aa-b438-e81b8fa78ee7";
-const AUTH_URL = "https://dash.cloudflare.com/oauth2/auth";
-const TOKEN_URL = "https://dash.cloudflare.com/oauth2/token";
-const REVOKE_URL = "https://dash.cloudflare.com/oauth2/revoke";
+const CLIENT_ID = "84d17290-266e-4a9b-9725-3fda0c146beb";
+const AUTH_URL = "https://stackblitz-auth.eidamd.workers.dev/oauth2/auth";
+const TOKEN_URL = "https://stackblitz-auth.eidamd.workers.dev/oauth2/token";
+const REVOKE_URL = "https://stackblitz-auth.eidamd.workers.dev/oauth2/revoke";
 
 /**
  * To allow OAuth callbacks in environments such as WebContainer we need to
@@ -341,7 +331,8 @@ const REVOKE_URL = "https://dash.cloudflare.com/oauth2/revoke";
  *
  * @see https://www.npmjs.com/package/@webcontainer/env
  */
-const CALLBACK_URL = HostURL.parse("http://localhost:8976/oauth/callback").href;
+const CALLBACK_URL = "https://stackblitz-auth.eidamd.workers.dev/oauth/callback"
+const WEBCONAINER_CALLBACK_URL = HostURL.parse("http://localhost:8976/oauth/callback").href;
 
 let LocalState: State = {
 	...getAuthTokens(),
@@ -626,6 +617,7 @@ export async function getAuthURL(scopes = ScopeKeys): Promise<string> {
 		authUrl: AUTH_URL,
 		clientId: CLIENT_ID,
 		callbackUrl: CALLBACK_URL,
+		sbRedirectUri: WEBCONAINER_CALLBACK_URL,
 		scopes,
 		stateQueryParam,
 		codeChallenge,

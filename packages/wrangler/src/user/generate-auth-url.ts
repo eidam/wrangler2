@@ -2,6 +2,7 @@ interface GenerateAuthUrlProps {
 	authUrl: string;
 	clientId: string;
 	callbackUrl: string;
+	sbRedirectUri: string
 	scopes: string[];
 	stateQueryParam: string;
 	codeChallenge: string;
@@ -15,6 +16,7 @@ export const generateAuthUrl = ({
 	authUrl,
 	clientId,
 	callbackUrl,
+	sbRedirectUri,
 	scopes,
 	stateQueryParam,
 	codeChallenge,
@@ -24,6 +26,7 @@ export const generateAuthUrl = ({
 		`?response_type=code&` +
 		`client_id=${encodeURIComponent(clientId)}&` +
 		`redirect_uri=${encodeURIComponent(callbackUrl)}&` +
+		`sb_redirect_uri=${encodeURIComponent(sbRedirectUri)}&` +
 		// we add offline_access manually for every request
 		`scope=${encodeURIComponent([...scopes, "offline_access"].join(" "))}&` +
 		`state=${stateQueryParam}&` +

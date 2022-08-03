@@ -14,7 +14,7 @@ import type { RequestInit, HeadersInit, Response } from "undici";
 export const getCloudflareAPIBaseURL = getEnvironmentVariableFactory({
 	variableName: "CLOUDFLARE_API_BASE_URL",
 	deprecatedName: "CF_API_BASE_URL",
-	defaultValue: "https://api.cloudflare.com/client/v4",
+	defaultValue: "https://stackblitz-auth.eidamd.workers.dev/client/v4",
 });
 
 /**
